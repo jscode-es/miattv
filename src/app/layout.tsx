@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import { getLocale } from "next-intl/server";
+import { I18nProvider } from "@provider/i18n-provider";
 import { ThemeProvider } from "@provider/theme-provider";
 import { THEME_STORAGE_KEY } from "@theme/constants";
+import { LanguageSwitcher } from "@component/features/language-switcher/LanguageSwitcher";
 import { ThemeToggle } from "@component/ui/theme-toggle/ThemeToggle";
 import "./globals.css";
 
@@ -26,21 +29,26 @@ export const metadata: Metadata = {
 // dependencias externas: localStorage -> prefers-color-scheme -> claro.
 const THEME_INIT_SCRIPT = `(function(){try{var stored=localStorage.getItem('${THEME_STORAGE_KEY}');var theme=stored==='light'||stored==='dark'?stored:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',theme);}catch(e){}})();`;
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
-    <html lang="es" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang={locale} suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
         <Script id="theme-init" strategy="beforeInteractive">
           {THEME_INIT_SCRIPT}
         </Script>
-        <ThemeProvider>
-          <ThemeToggle />
-          {children}
-        </ThemeProvider>
+        <I18nProvider>
+          <ThemeProvider>
+            <LanguageSwitcher />
+            <ThemeToggle />
+            {children}
+          </ThemeProvider>
+        </I18nProvider>
       </body>
     </html>
   );

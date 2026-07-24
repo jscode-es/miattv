@@ -1,0 +1,15 @@
+{
+  "Home": {
+    "title": "Para empezar, edita el archivo page.tsx.",
+    "description": "¿Buscas un punto de partida o más instrucciones? Visita el centro de <templates>Plantillas</templates> o de <learning>Aprendizaje</learning>.",
+    "nextLogoAlt": "Logotipo de Next.js",
+    "vercelLogoAlt": "Logotipo de Vercel",
+    "deployNow": "Desplegar ahora",
+    "documentation": "Documentación"
+  },
+  "LanguageSwitcher": {
+    "groupLabel": "Selector de idioma",
+    "es": "Español",
+    "en": "English"
+  }
+}
