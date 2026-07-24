@@ -1,0 +1,24 @@
+.group {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.option {
+  padding: 4px 10px;
+  border: 1px solid var(--foreground);
+  border-radius: 6px;
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.option:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.option[aria-pressed='true'] {
+  background: var(--foreground);
+  color: var(--background);
+}
