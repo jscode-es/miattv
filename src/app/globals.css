@@ -1,14 +1,4 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+@import '../themes/theme.css';
 
 html {
   height: 100%;
@@ -42,8 +32,95 @@ a {
   text-decoration: none;
 }
 
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
 @media (prefers-color-scheme: dark) {
-  html {
+  :root:not([data-theme]) {
     color-scheme: dark;
+  }
+}
+
+.home {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.home-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.home-intro a {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.home-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.home-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-weight: 500;
+}
+
+.home-cta--primary {
+  background: var(--accent);
+  color: var(--accent-foreground);
+  border-color: var(--accent);
+}
+
+.home-cta--secondary {
+  background: var(--surface);
+  color: var(--foreground);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-cta--primary:hover {
+    opacity: 0.85;
+  }
+
+  .home-cta--secondary:hover {
+    border-color: var(--accent);
+  }
+}
+
+.home-cta:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+[data-theme='dark'] .home-logo {
+  filter: invert(1);
+}
+
+@media (max-width: 600px) {
+  .home {
+    padding: 48px 24px;
   }
 }
