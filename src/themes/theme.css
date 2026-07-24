@@ -1,0 +1,45 @@
+/*
+ * Tokens de tema. `:root` (sin atributo) es el valor por defecto antes de
+ * que el script de inicialización de `app/layout.tsx` resuelva el tema
+ * (respeta `prefers-color-scheme` como fallback sin JS); las variantes
+ * `[data-theme]` son la fuente de verdad una vez resuelto, sea por
+ * preferencia guardada o por el sistema operativo.
+ */
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --surface: #f5f5f5;
+  --border: #d4d4d4;
+  --accent: #2563eb;
+  --accent-foreground: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --surface: #171717;
+    --border: #404040;
+    --accent: #60a5fa;
+    --accent-foreground: #0a0a0a;
+  }
+}
+
+:root[data-theme='light'] {
+  --background: #ffffff;
+  --foreground: #171717;
+  --surface: #f5f5f5;
+  --border: #d4d4d4;
+  --accent: #2563eb;
+  --accent-foreground: #ffffff;
+}
+
+:root[data-theme='dark'] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --surface: #171717;
+  --border: #404040;
+  --accent: #60a5fa;
+  --accent-foreground: #0a0a0a;
+}
